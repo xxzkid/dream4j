@@ -14,9 +14,31 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<framework.version>1.0-SNAPSHOT</framework.version>
+		<framework.version>1.0-SNAPSHOT</framework.version>
+		<entity.version>1.0-SNAPSHOT</entity.version>
+		<common.version>1.0-SNAPSHOT</common.version>
 	</properties>
 	
 	<dependencies>
+	   <dependency>
+           <groupId>org.xxz</groupId>
+           <artifactId>dream4j-framework</artifactId>
+           <version>${framework.version}</version>
+       </dependency>
+       
+       <dependency>
+           <groupId>org.xxz</groupId>
+           <artifactId>dream4j-entity</artifactId>
+           <version>${entity.version}</version>
+       </dependency>
+       
+       <dependency>
+           <groupId>org.xxz</groupId>
+           <artifactId>dream4j-common</artifactId>
+           <version>${common.version}</version>
+       </dependency>
+       
 	</dependencies>
 	
 </project>

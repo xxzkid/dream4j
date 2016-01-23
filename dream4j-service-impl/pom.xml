@@ -14,9 +14,17 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<service.version>1.0-SNAPSHOT</service.version>
 	</properties>
 	
 	<dependencies>
+	   
+	   <dependency>
+	       <groupId>org.xxz</groupId>
+	       <artifactId>dream4j-service</artifactId>
+	       <version>${service.version}</version>
+	   </dependency>
+	
 	</dependencies>
 	
 </project>
