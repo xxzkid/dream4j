@@ -427,5 +427,10 @@
     <module>dream4j-framework</module>
     <module>dream4j-common</module>
     <module>dream4j-entity</module>
+    <module>dream4j-domain</module>
+    <module>dream4j-domain-impl</module>
+    <module>dream4j-service</module>
+    <module>dream4j-service-impl</module>
+    <module>dream4j-web</module>
   </modules>
 </project>
