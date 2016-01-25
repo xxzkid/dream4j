@@ -11,9 +11,9 @@
 	<!-- shiro filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.do" />
-		<property name="successUrl" value="/index.do" />
-		<property name="unauthorizedUrl" value="/403.do" />
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/index" />
+		<property name="unauthorizedUrl" value="/403" />
 		<property name="filters">
 			<map>
 				<entry key="authc" value-ref="formAuthenticationFilter" />
@@ -22,8 +22,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/resources/** = anon
-				/login.json = anon
-				/logout.json = authc
+				/login = anon
 				/** = authc
 			</value>
 		</property>
