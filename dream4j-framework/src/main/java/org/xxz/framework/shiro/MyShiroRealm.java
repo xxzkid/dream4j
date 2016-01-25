@@ -25,10 +25,15 @@ public class MyShiroRealm extends AuthorizingRealm {
         String username = (String) principals.fromRealm(getName()).iterator().next();
         if ( username != null ) {
             Collection<String> permissions = businessManager.queryPermissions(username);
-            if ( permissions != null && !permissions.isEmpty() ) {
+            Collection<String> roles = businessManager.queryRoles(username);
+            if ( permissions != null && !permissions.isEmpty() //
+                    && roles != null && !roles.isEmpty() ) {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 for ( String permission : permissions ) {
                     info.addStringPermission(permission);
+                }
+                for ( String role : roles) {
+                    info.addRole(role);
                 }
                 return info;
             }

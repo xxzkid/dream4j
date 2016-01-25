@@ -31,5 +31,7 @@
 	<!-- 导入shiro配置 -->
 	<import resource="classpath*:spring-shiro.xml" />
 	<import resource="classpath*:spring-redis.xml" />
+	
+	<bean id="businessManager" class="">
 
 </beans>

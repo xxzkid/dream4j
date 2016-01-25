@@ -12,10 +12,18 @@ public interface BusinessManager {
     Collection<String> queryPermissions(String username);
 
     /**
+     * 查询角色
+     * @param username
+     * @return
+     */
+    Collection<String> queryRoles(String username);
+
+    /**
      * 获取登录账户
      * @param username
      * @return
      */
     LoginAccount get(String username);
+
 
 }

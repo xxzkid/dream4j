@@ -11,9 +11,9 @@
 	<!-- shiro filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.html" />
-		<property name="successUrl" value="/index.html" />
-		<property name="unauthorizedUrl" value="/403.html" />
+		<property name="loginUrl" value="/login.do" />
+		<property name="successUrl" value="/index.do" />
+		<property name="unauthorizedUrl" value="/403.do" />
 		<property name="filters">
 			<map>
 				<entry key="authc" value-ref="formAuthenticationFilter" />
@@ -41,8 +41,8 @@
 
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
+    <!-- 缓存 -->
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
 	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter" />
@@ -52,4 +52,5 @@
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
+	
 </beans>

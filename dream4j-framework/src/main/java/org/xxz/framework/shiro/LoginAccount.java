@@ -4,10 +4,7 @@ import java.util.Date;
 
 /**
  * 登录账户
- * <p>title: LoginAccount</p>
- * <p>description: </p>
  * @author xxz
- * @date 2016年1月25日 下午1:59:58
  */
 public interface LoginAccount extends java.io.Serializable {
 

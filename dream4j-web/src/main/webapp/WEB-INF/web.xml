@@ -56,7 +56,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>shiroFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 
 	<!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->
@@ -71,15 +71,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<!-- 拦截所有*.html *.json 的请求,交给DispatcherServlet处理,性能最好 -->
-		<url-pattern>*.html</url-pattern>
-		<url-pattern>*.json</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
-	<!-- 首页 -->
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
 
 	<!-- 错误页 -->
 	<error-page>
