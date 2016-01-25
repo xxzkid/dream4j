@@ -15,7 +15,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<framework.version>1.0-SNAPSHOT</framework.version>
-		<framework.version>1.0-SNAPSHOT</framework.version>
 		<entity.version>1.0-SNAPSHOT</entity.version>
 		<common.version>1.0-SNAPSHOT</common.version>
 	</properties>

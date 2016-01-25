@@ -17,19 +17,8 @@
 	    http://www.springframework.org/schema/util
 	    http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- 扫描 framework, domain, service -->
-	<context:component-scan base-package="org.xxz.framework, org.xxz.domain, org.xxz.service"></context:component-scan>
+	<context:property-placeholder location="classpath:redis.properties" />
 
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath*:jdbc.properties</value>
-			</list>
-		</property>
-	</bean>
-
-	<!-- 导入shiro配置 -->
-	<import resource="classpath*:spring-shiro.xml" />
-	<import resource="classpath*:spring-redis.xml" />
+	
 
 </beans>

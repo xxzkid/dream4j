@@ -12,6 +12,13 @@
             classpath*:spring-shiro.xml  
         </param-value>
 	</context-param>
+
+	<!-- 防止发生java.beans.Introspector内存泄露,应将它配置在ContextLoaderListener的前面 -->
+	<!-- 详细描述见http://blog.csdn.net/jadyer/article/details/11991457 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
 	<!-- 配置Spring上下文监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -42,6 +49,7 @@
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<async-supported>true</async-supported>
 		<init-param>
+			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
 			<param-name>targetFilterLifecycle</param-name>
 			<param-value>true</param-value>
 		</init-param>
@@ -51,45 +59,40 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-    <!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->  
-    <servlet>  
-        <servlet-name>springmvc</servlet-name>  
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
-        <init-param>  
-            <param-name>contextConfigLocation</param-name>  
-            <param-value>classpath*:spring-mvc.xml</param-value>  
-        </init-param>  
-        <load-on-startup>1</load-on-startup>  
-    </servlet>  
-    <servlet-mapping>  
-        <servlet-name>springmvc</servlet-name>  
-        <!-- 拦截所有*.html *.json 的请求,交给DispatcherServlet处理,性能最好 --> 
-        <url-pattern>*.html</url-pattern>
-        <url-pattern>*.json</url-pattern>
-    </servlet-mapping>
+	<!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 拦截所有*.html *.json 的请求,交给DispatcherServlet处理,性能最好 -->
+		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.json</url-pattern>
+	</servlet-mapping>
 
-    <!-- 首页 -->  
-    <welcome-file-list>  
-        <welcome-file>index.html</welcome-file>  
-    </welcome-file-list>
-    
-    <!-- 错误页 -->  
-    <error-page>  
-        <error-code>404</error-code>  
-        <location>/error/404</location>  
-    </error-page>
-    <error-page>  
-        <error-code>405</error-code>  
-        <location>/error/405</location>  
-    </error-page>
-    <error-page>  
-        <error-code>500</error-code>  
-        <location>/error/500</location>  
-    </error-page>  
-    <error-page>  
-        <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>  
-        <location>/error/401</location>  
-    </error-page>
+	<!-- 首页 -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
+	<!-- 错误页 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error/405</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page>
 
 </web-app>

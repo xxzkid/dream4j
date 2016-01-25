@@ -197,6 +197,11 @@
                 <artifactId>commons-collections</artifactId>  
             </dependency>
             
+            <dependency>
+			    <groupId>commons-lang</groupId>
+			    <artifactId>commons-lang</artifactId>
+			</dependency>
+            
             <!-- google -->
             <dependency>  
                 <groupId>com.google.collections</groupId>  

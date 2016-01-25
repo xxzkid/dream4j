@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc
@@ -8,7 +7,57 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-        
-   
+
+	<context:component-scan base-package="org.xxz.web" />
+	<mvc:annotation-driven />
+
+    <!-- 静态资源 -->
+	<mvc:default-servlet-handler />
+	<mvc:resources location="/resources/**" mapping="/resources/**" />
+
+    <!-- 视图配置 -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="xml" value="text/xml" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/views/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 10M -->
+		<property name="maxUploadSize" value="83886080"></property>
+	</bean>
+	
+	<!-- 数据校验 -->
+	<!-- 以下 validator 在使用 mvc:annotation-driven 会 自动注册 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+    <!-- bind your messages.properties -->
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+       <!-- 不能加classpath*: 否则找不到message-->
+       <property name="basename" value="message" />
+       <!-- 不使用默认消息 
+                        写法例子:类型.对象.字段  NotNull.user.id
+       <property name="useCodeAsDefaultMessage" value="false"/>
+        -->
+       <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 
 </beans>
