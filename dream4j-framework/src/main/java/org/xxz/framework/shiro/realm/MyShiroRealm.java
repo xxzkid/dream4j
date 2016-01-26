@@ -1,4 +1,4 @@
-package org.xxz.framework.shiro;
+package org.xxz.framework.shiro.realm;
 
 import java.util.Collection;
 
@@ -11,6 +11,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.xxz.framework.shiro.entity.LoginAccount;
+import org.xxz.framework.shiro.service.BusinessManager;
 
 public class MyShiroRealm extends AuthorizingRealm {
     
@@ -26,17 +28,19 @@ public class MyShiroRealm extends AuthorizingRealm {
         if ( username != null ) {
             Collection<String> permissions = businessManager.queryPermissions(username);
             Collection<String> roles = businessManager.queryRoles(username);
-            if ( permissions != null && !permissions.isEmpty() //
-                    && roles != null && !roles.isEmpty() ) {
-                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            if ( permissions != null && !permissions.isEmpty() ) {
                 for ( String permission : permissions ) {
                     info.addStringPermission(permission);
                 }
+                
+            }
+            if( roles != null && !roles.isEmpty() ) {
                 for ( String role : roles) {
                     info.addRole(role);
                 }
-                return info;
             }
+            return info;
         }
         return null;
     }
@@ -49,7 +53,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         String username = token.getUsername();
         if ( username != null && !"".equals(username) ) {
-            LoginAccount account = businessManager.get( username );
+            LoginAccount account = businessManager.getLoginAccount( username );
             return new SimpleAuthenticationInfo( account.getLoginName(), account.getPassword(), getName() );
         }
         return null;

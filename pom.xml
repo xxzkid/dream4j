@@ -36,6 +36,9 @@
 	    <fasterxml-jackson.version>2.6.3</fasterxml-jackson.version>
 	    <jackson-mapper.version>1.9.11</jackson-mapper.version>
 	    
+	    <!-- gson -->
+	    <gson.version>2.3.1</gson.version>
+	    
 	    <!-- Ehcache -->
 	    <ehcache.version>2.9.0</ehcache.version>
 	    
@@ -233,6 +236,13 @@
 		        <artifactId>jackson-mapper-asl</artifactId>
 		        <version>${jackson-mapper.version}</version>
 		    </dependency>
+		    
+		    <!-- gson -->
+		    <dependency>
+			    <groupId>com.google.code.gson</groupId>
+			    <artifactId>gson</artifactId>
+			    <version>${gson.version}</version>
+			</dependency>
 		    
 		    <!-- servlet api -->
 		    <dependency>  

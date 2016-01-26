@@ -147,6 +147,12 @@
                 <artifactId>jackson-mapper-asl</artifactId>
             </dependency>
             
+            <!-- gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+            </dependency>
+            
             <!-- servlet api -->
             <dependency>  
                 <groupId>javax.servlet</groupId>  

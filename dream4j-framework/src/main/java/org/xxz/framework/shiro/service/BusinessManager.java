@@ -1,6 +1,8 @@
-package org.xxz.framework.shiro;
+package org.xxz.framework.shiro.service;
 
 import java.util.Collection;
+
+import org.xxz.framework.shiro.entity.LoginAccount;
 
 public interface BusinessManager {
 
@@ -23,7 +25,7 @@ public interface BusinessManager {
      * @param username
      * @return
      */
-    LoginAccount get(String username);
+    LoginAccount getLoginAccount(String username);
 
 
 }
