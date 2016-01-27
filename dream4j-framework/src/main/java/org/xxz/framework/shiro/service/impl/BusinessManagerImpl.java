@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xxz.framework.shiro.domain.BusinessApi;
 import org.xxz.framework.shiro.entity.LoginAccount;
 import org.xxz.framework.shiro.service.BusinessManager;
@@ -13,7 +13,7 @@ import org.xxz.framework.shiro.service.BusinessManager;
  * businessManager
  * @author xxz
  */
-@Service
+@Transactional
 public class BusinessManagerImpl implements BusinessManager {
     
     @Resource

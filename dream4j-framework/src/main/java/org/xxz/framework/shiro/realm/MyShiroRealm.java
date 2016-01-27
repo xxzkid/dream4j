@@ -19,30 +19,22 @@ public class MyShiroRealm extends AuthorizingRealm {
     // 用于获取用户信息及用户权限信息的业务接口
     private BusinessManager businessManager;
 
+    public void setBusinessManager(BusinessManager businessManager) {
+        this.businessManager = businessManager;
+    }
+
     /**
      * 获取授权信息
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String username = (String) principals.fromRealm(getName()).iterator().next();
-        if ( username != null ) {
-            Collection<String> permissions = businessManager.queryPermissions(username);
-            Collection<String> roles = businessManager.queryRoles(username);
-            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            if ( permissions != null && !permissions.isEmpty() ) {
-                for ( String permission : permissions ) {
-                    info.addStringPermission(permission);
-                }
-                
-            }
-            if( roles != null && !roles.isEmpty() ) {
-                for ( String role : roles) {
-                    info.addRole(role);
-                }
-            }
-            return info;
-        }
-        return null;
+        final String username = (String) principals.getPrimaryPrincipal();
+        final Collection<String> permissions = businessManager.queryPermissions( username );
+        final Collection<String> roles = businessManager.queryRoles( username );
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRoles(roles);
+        info.addStringPermissions(permissions);
+        return info;
     }
 
     /**

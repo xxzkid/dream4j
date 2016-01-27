@@ -10,13 +10,21 @@ public class LoginAccount implements java.io.Serializable {
 
     private static final long serialVersionUID = -2518905276772497871L;
     
+    private String id;
     private String loginName;
     private String password;
     private boolean enabled;
     private boolean expired;
     private Date createDate;
     
-    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }

@@ -11,7 +11,7 @@
        <result property="createDate" column="createDate" />
     </resultMap>
 	
-	<select id="queryPermissions" parameterType="string">
+	<select id="queryPermissions" parameterType="string" resultType="string">
 	   SELECT t.* FROM `t_permission` t
 		LEFT JOIN `t_role_permission` t1 ON t.id = t1.permission_id
 		LEFT JOIN `t_user_role` t2 ON t1.role_id = t2.role_id
@@ -19,7 +19,7 @@
 		WHERE t3.username = #{username}
 	</select>
 	
-	<select id="queryRoles" parameterType="string">
+	<select id="queryRoles" parameterType="string" resultType="string">
 	   SELECT t.name FROM `t_role` t
 		LEFT JOIN `t_user_role` t1 ON t.id = t1.role_id
 		LEFT JOIN `t_user` t2 ON t1.user_id = t2.id

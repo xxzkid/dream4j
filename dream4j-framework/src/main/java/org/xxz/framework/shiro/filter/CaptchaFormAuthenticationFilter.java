@@ -65,5 +65,5 @@ public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
             return onLoginFailure(token, e, request, response);
         }
     }
-
+    
 }

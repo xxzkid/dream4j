@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%-- 项目路径 --%>
-<c:set var="projectname" value="${pageContext.request.contextPath}" />
+<c:set var="ctx" value="${pageContext.request.contextPath}" scope="request" />
 <%-- 静态文件路径 --%>
-<c:set var="resources" value="/resources" />
+<c:set var="res" value="${ctx}/resources" scope="request" />
 <%-- 图片路径 --%>
-<c:set var="img" value="/img" />
+<c:set var="imgserver" value="/img" scope="request" />

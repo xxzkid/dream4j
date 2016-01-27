@@ -17,43 +17,36 @@
 
 	<!-- 静态资源 -->
 	<mvc:default-servlet-handler />
-	<mvc:resources location="/resources/**" mapping="/resources/**" />
-
-	<!-- Json -->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-		<property name="messageConverters">
-			<util:list id="beanList">
-				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-					<property name="supportedMediaTypes">
-						<list>
-							<value>application/octet-stream;charset=UTF-8</value>
-							<value>application/x-www-form-urlencoded;charset=UTF-8</value>
-							<!-- 微信支付 -->
-							<value>text/xml;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-					<property name="supportedMediaTypes">
-						<list>
-							<value>text/html;charset=UTF-8</value>
-							<value>text/json;charset=UTF-8</value>
-							<value>application/json;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
-				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
-			</util:list>
-		</property>
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="mediaTypes">
+	        <value>
+	            html=text/html
+	            json=application/json
+	            json=text/html
+	            xml=application/xml
+	        </value>
+	    </property>
 	</bean>
 
-	<!-- 视图配置 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 默认InternalResourceView，如需支持JSTL标签需指定viewClass -->
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	    <property name="contentNegotiationManager" ref="contentNegotiationManager" />
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/views/" />
+                    <property name="suffix" value=".jsp" />
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+            </list>
+        </property>
+    </bean>
 
 	<!-- 文件上传 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

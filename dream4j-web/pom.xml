@@ -25,9 +25,16 @@
 		
 		<dependency>
 		    <groupId>org.xxz</groupId>
-		    <artifactId>dream4j-service</artifactId>
+		    <artifactId>dream4j-service-impl</artifactId>
 		    <version>${service.version}</version>
 		</dependency>
+		
+		<!-- servlet api -->
+        <dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>javax.servlet-api</artifactId>  
+            <scope>provided</scope>  
+        </dependency>
 		
 	</dependencies>
 	<build>
