@@ -39,7 +39,7 @@
     	var url = PATH.ctx + "/login";
     	$.post(url, data, function(json){
     		console.log(json);
-    		if(json.code == 0) {
+    		if(json.result.code === 0) {
     		    window.location.href = PATH.ctx + "/test";
     		}
     	}, 'json');

@@ -58,12 +58,6 @@ public class ShiroController {
     @RequestMapping(value = "/test")
     public ModelAndView test( HttpServletRequest request, HttpServletResponse response ) {
         ModelAndView m = new ModelAndView("test");
-        
-//        Subject subject = SecurityUtils.getSubject();
-//        if(!subject.hasRole("admin")) {
-//            m.setViewName("redirect:/unauthorized");
-//        }
-        
         return m;
     }
     
