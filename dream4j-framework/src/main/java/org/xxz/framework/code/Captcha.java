@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -115,10 +116,13 @@ public class Captcha extends HttpServlet {
      * @return true 验证码正确 false 验证码错误
      */
     public static boolean validateCaptcha(HttpServletRequest request, String code) {
-        String captchaCode = (String) request.getSession().getAttribute(CAPTCHAT_KEY);
+        boolean b = false;
+        HttpSession session = request.getSession();
+        String captchaCode = (String) session.getAttribute(CAPTCHAT_KEY);
         if(StringUtils.equals(captchaCode, code)) {
-            return true;
+            b = true;
         }
-        return false;
+        session.removeAttribute(CAPTCHAT_KEY);
+        return b;
     }
 }

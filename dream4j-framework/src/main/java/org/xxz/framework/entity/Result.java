@@ -10,7 +10,7 @@ public class Result implements java.io.Serializable {
     
     private int code;
     private String message;
-    private Object obj;
+    private Object object;
 
     public int getCode() {
         return code;
@@ -30,12 +30,12 @@ public class Result implements java.io.Serializable {
         return this;
     }
 
-    public Object getObj() {
-        return obj;
+    public Object getObject() {
+        return object;
     }
 
-    public Result setObj(Object obj) {
-        this.obj = obj;
+    public Result setObject(Object object) {
+        this.object = object;
         return this;
     }
 

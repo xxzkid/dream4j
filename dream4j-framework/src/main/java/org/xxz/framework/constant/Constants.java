@@ -22,5 +22,12 @@ public interface Constants {
 
     /** login account authen failed */
     int LOGIN_ACCOUNT_AUTHEN_FAILED = -5;
+
+    /** login account expired */
+    int LOGIN_ACCOUNT_EXPIRED = -6;
+
+    /** captcha error */
+    int CAPTCHA_ERROR = -7;
+
     
 }
