@@ -66,7 +66,7 @@
 		<property name="basename" value="message" />
 		<!-- 不使用默认消息       默认写法例子:类型.对象.字段 NotNull.user.id 
 		<property name="useCodeAsDefaultMessage" value="false"/>
-		 -->
+		-->
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
