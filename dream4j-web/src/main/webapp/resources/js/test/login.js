@@ -3,13 +3,15 @@ var login = {};
 
 $(function(){
 	
-	$('#captcha').on('click', function(){
-		$(this).attr('src', PATH.ctx + '/code.jpg?_t=' + new Date().getTime());
-	});
+	$('#captcha').on('click', login.captchaClick);
 	
 	$('#submit').on('click', login.submit);
 	
 });
+
+login.captchaClick = function() {
+	$('#captcha').attr('src', PATH.ctx + '/code.jpg?_t=' + new Date().getTime());
+};
 
 login.submit = function() {
 	var data = {};
@@ -17,7 +19,7 @@ login.submit = function() {
 	data.password = $('input[name="password"]').val();
 	data.captcha = $('input[name="captcha"]').val();
 	data.rememberMe = $.trim($('input[name="rememberMe"]:checked').val()) == '' ? false : true;
-	console.log(data);
+//	console.log(data);
 	login.dologin(data);
 }
 
@@ -31,9 +33,12 @@ login.dologin = function(data) {
 		console.log(json);
 		if(json.result.code === 0) {
 		    window.location.href = PATH.ctx + "/test";
+		} else if (json.result.code === -1) {
+			alert(json.result.object[1].defaultMessage);
 		} else {
 			alert(CODE[json.result.code]);
-			login.reset();
 		}
+		login.captchaClick();
+		login.reset();
 	}, 'json');
 }
