@@ -1,4 +1,4 @@
-package org.xxz.framework.code;
+package org.xxz.framework.captcha;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -112,14 +112,14 @@ public class Captcha extends HttpServlet {
     /**
      * 验证码校验
      * @param request 当前请求
-     * @param code 验证码
+     * @param captcha 验证码
      * @return true 验证码正确 false 验证码错误
      */
-    public static boolean validateCaptcha(HttpServletRequest request, String code) {
+    public static boolean validateCaptcha(HttpServletRequest request, String captcha) {
         boolean b = false;
         HttpSession session = request.getSession();
         String captchaCode = (String) session.getAttribute(CAPTCHAT_KEY);
-        if(StringUtils.equals(captchaCode, code)) {
+        if(StringUtils.equalsIgnoreCase(captchaCode, captcha)) {
             b = true;
         }
         session.removeAttribute(CAPTCHAT_KEY);

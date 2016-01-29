@@ -46,7 +46,7 @@
 	<!-- 验证码 -->
 	<servlet>
 	   <servlet-name>captcha</servlet-name>
-	   <servlet-class>org.xxz.framework.code.Captcha</servlet-class>
+	   <servlet-class>org.xxz.framework.captcha.Captcha</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	   <servlet-name>captcha</servlet-name>

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.xxz.common.util.HttpUtil;
 import org.xxz.entity.test.vo.LoginForm;
-import org.xxz.framework.code.Captcha;
+import org.xxz.framework.captcha.Captcha;
 import org.xxz.framework.constant.Constants;
 import org.xxz.framework.entity.Result;
 import org.xxz.service.test.ShiroService;

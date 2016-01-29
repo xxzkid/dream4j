@@ -23,6 +23,7 @@
     
     <script src="${res}/js/zepto.min.js"></script>
     <script src="${res}/js/constants.js"></script>
+    <script src="${res}/js/ui.js"></script>
 	<script src="${res}/js/test/login.js"></script>
 
 	<jsp:include page="path.jsp"></jsp:include>

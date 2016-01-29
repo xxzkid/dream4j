@@ -8,7 +8,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.xxz.framework.code.Captcha;
+import org.xxz.framework.captcha.Captcha;
 import org.xxz.framework.shiro.exception.IncorrectCaptchaException;
 import org.xxz.framework.shiro.token.CaptchaUsernamePasswordToken;
 

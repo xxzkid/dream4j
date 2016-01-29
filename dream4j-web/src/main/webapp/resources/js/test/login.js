@@ -13,32 +13,35 @@ login.captchaClick = function() {
 	$('#captcha').attr('src', PATH.ctx + '/code.jpg?_t=' + new Date().getTime());
 };
 
+login.reset = function() {
+	$('form').get(0).reset();
+}
+
 login.submit = function() {
 	var data = {};
 	data.username = $('input[name="username"]').val();
 	data.password = $('input[name="password"]').val();
 	data.captcha = $('input[name="captcha"]').val();
 	data.rememberMe = $.trim($('input[name="rememberMe"]:checked').val()) == '' ? false : true;
-//	console.log(data);
-	login.dologin(data);
+	login.dologin(data, login.submitCallback);
 }
 
-login.reset = function() {
-	$('form').get(0).reset();
+login.submitCallback = function(data, json) {
+	console.log(json);
+	if(json.result.code === 0) {
+	    window.location.href = PATH.ctx + "/test";
+	} else if (json.result.code === -1) {
+		$.ui.alert('提示', json.result.object[0].defaultMessage);
+	} else {
+		$.ui.alert('提示', CODE[json.result.code]);
+	}
+	login.captchaClick();
+	login.reset();
 }
 
-login.dologin = function(data) {
+login.dologin = function(data, fn) {
 	var url = PATH.ctx + "/login";
 	$.post(url, data, function(json){
-		console.log(json);
-		if(json.result.code === 0) {
-		    window.location.href = PATH.ctx + "/test";
-		} else if (json.result.code === -1) {
-			alert(json.result.object[1].defaultMessage);
-		} else {
-			alert(CODE[json.result.code]);
-		}
-		login.captchaClick();
-		login.reset();
+		if (typeof fn === 'function' ) fn(data, json);
 	}, 'json');
 }
