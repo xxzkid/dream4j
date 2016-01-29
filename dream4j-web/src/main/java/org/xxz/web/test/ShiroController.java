@@ -34,7 +34,7 @@ public class ShiroController {
         Subject subject = SecurityUtils.getSubject();
         // 如果已经登录，则转入登录成功的页面，防止继续登录
         if (subject.isAuthenticated()) {
-            m.setViewName("redirect:/test");;
+            m.setViewName("redirect:/test");
         }
         
         return m;
