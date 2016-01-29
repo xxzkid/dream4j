@@ -39,16 +39,18 @@
 	</dependencies>
 	<build>
 		<finalName>dream4j-web</finalName>
-		<!--Maven编译插件 配置 -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>${plugin.maven.compiler}</version>
-			<configuration>
-				<source>${project.build.jdk}</source>
-				<target>${project.build.jdk}</target>
-				<encoding>${project.build.sourceEncoding}</encoding>
-			</configuration>
-		</plugin>
+		<plugins>
+		    <!--Maven编译插件 配置 --> 
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>${plugin.maven.compiler}</version>
+	            <configuration>
+	                <source>${project.build.jdk}</source>
+	                <target>${project.build.jdk}</target>
+	                <encoding>${project.build.sourceEncoding}</encoding>
+	            </configuration>
+	        </plugin>
+		</plugins>
 	</build>
 </project>

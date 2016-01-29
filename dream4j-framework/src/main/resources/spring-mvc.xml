@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<context:component-scan base-package="org.xxz.web" />
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator" />
 
 	<!-- 静态资源 -->
 	<mvc:default-servlet-handler />
@@ -58,16 +58,22 @@
 
 	<!-- 数据校验 -->
 	<!-- 以下 validator 在使用 mvc:annotation-driven 会 自动注册 -->
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	    <property name="validationMessageSource" ref="messageSource" />
+	</bean>
 
 	<!-- bind your messages.properties -->
 	<bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
-		<!-- 不能加classpath*: 否则找不到message -->
-		<property name="basename" value="message" />
-		<!-- 不使用默认消息       默认写法例子:类型.对象.字段 NotNull.user.id 
+		<property name="basenames">
+		    <list>
+		        <!-- 名字一定是validationMessages -->
+		        <value>validationMessages</value>
+		    </list>
+		</property>
+		<!-- 不使用默认消息       默认写法例子:类型.对象.字段 NotNull.user.id -->
 		<property name="useCodeAsDefaultMessage" value="false"/>
-		-->
 		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="60"/>
 	</bean>
 
 	<!-- 启动shiro注解 必须在spring mvc中 -->

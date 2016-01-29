@@ -42,7 +42,7 @@ public class ShiroController {
     
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView doLogin( HttpServletRequest request, HttpServletResponse response, @Valid LoginForm loginForm, BindingResult bindingResult ) {
+    public ModelAndView dologin( HttpServletRequest request, HttpServletResponse response, @Valid LoginForm loginForm, BindingResult bindingResult ) {
         ModelAndView m = new ModelAndView();
         
         if (bindingResult.hasErrors()) {

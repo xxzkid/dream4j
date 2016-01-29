@@ -9,12 +9,12 @@ public class LoginForm implements java.io.Serializable {
 
     private static final long serialVersionUID = -5406467061334245346L;
     
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.loginForm.username}")
     private String username;
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.loginForm.password}")
     private String password;
     private Boolean rememberMe;
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.loginForm.captcha}")
     private String captcha;
     private String ip;
 
