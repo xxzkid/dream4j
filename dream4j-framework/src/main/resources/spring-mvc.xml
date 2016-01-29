@@ -66,11 +66,11 @@
 	<bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
 		<property name="basenames">
 		    <list>
-		        <!-- 名字一定是validationMessages -->
-		        <value>validationMessages</value>
+		        <!-- 一定不要classpath:否则找不到messages.properties -->
+		        <value>messages</value>
 		    </list>
 		</property>
-		<!-- 不使用默认消息       默认写法例子:类型.对象.字段 NotNull.user.id -->
+		<!-- 不使用默认消息    但是使用默认写法，例子:类型.对象.字段 NotNull.user.id -->
 		<property name="useCodeAsDefaultMessage" value="false"/>
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="cacheSeconds" value="60"/>
