@@ -21,8 +21,6 @@ public class ShiroServiceImpl implements ShiroService {
     public Result login(LoginForm loginForm) {
         Subject subject = SecurityUtils.getSubject();
         
-        
-        
         UsernamePasswordToken token = new UsernamePasswordToken(loginForm.getUsername(), loginForm.getPassword(), loginForm.getRememberMe(), loginForm.getIp());
         
         try {

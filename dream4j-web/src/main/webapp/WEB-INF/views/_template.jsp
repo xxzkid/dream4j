@@ -8,11 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title></title>
-    <link rel="stylesheet" href="" />
-    <script src=""></script>
+    <link rel="stylesheet" href="${res}/css/weui.min.css" />
 </head>
 <body>
 
-<jsp:include page="path.jsp"></jsp:include>
+	<script src=""></script>
+	<jsp:include page="path.jsp"></jsp:include>
 </body>
 </html>

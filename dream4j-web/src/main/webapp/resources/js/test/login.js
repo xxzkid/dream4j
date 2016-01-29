@@ -36,7 +36,7 @@ login.submitCallback = function(data, json) {
 		$.ui.alert('提示', CODE[json.result.code]);
 	}
 	login.captchaClick();
-	login.reset();
+//	login.reset();
 }
 
 login.dologin = function(data, fn) {

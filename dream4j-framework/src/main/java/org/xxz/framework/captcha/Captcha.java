@@ -49,7 +49,7 @@ public class Captcha extends HttpServlet {
         // 设置背景色
         setBackGround(g);
         // 设置边框
-        setBorder(g);
+        // setBorder(g);
         // 画干扰线
         drawRandomLine(g);
         // 写随机数

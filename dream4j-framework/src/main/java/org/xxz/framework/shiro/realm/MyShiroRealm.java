@@ -69,7 +69,8 @@ public class MyShiroRealm extends AuthorizingRealm {
             }
             
             // 密码校验
-            if ( !token.getPassword().equals(account.getPassword()) ) {
+            String pwd = new String(token.getPassword());
+            if ( !pwd.equals(account.getPassword()) ) {
                 log.error( "account password invalid" );
                 throw new IncorrectCredentialsException( "account password invalid" );
             }
@@ -83,7 +84,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             // 检查用户是否过期
             if ( !account.isExpired() ) {
                 log.error( "account is expired" );
-                throw new ExpiredCredentialsException( "account is expired" );
+//                throw new ExpiredCredentialsException( "account is expired" );
             }
             
             // session 存入用户
