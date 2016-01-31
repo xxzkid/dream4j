@@ -173,7 +173,7 @@
             // 缓冲删除
             setTimeout(function(){
                 actionsheet.remove();
-            }, 50);
+            }, 100);
         };
     }
     
