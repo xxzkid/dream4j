@@ -132,20 +132,17 @@
     }
 
     function actionsheet(data, itemClick) {
-        $( actionsheetTpl ).appendTo( $('body') );
-
-        var actionsheet = $('#actionSheet_wrap').show();
+        var actionsheet = $( actionsheetTpl ).appendTo( $('body') ).show();
 
         var mask = $('#mask');
         var weuiActionsheet = $('#weui_actionsheet');
         weuiActionsheet.addClass('weui_actionsheet_toggle');
         mask.show().addClass('weui_fade_toggle').click(function () {
-            hideActionSheet(weuiActionsheet, mask);
-            actionsheet.remove();
+            hideActionSheet(actionsheet, weuiActionsheet, mask);
         });
         // 去掉按钮绑定
         $('#actionsheet_cancel').click(function () {
-            hideActionSheet(weuiActionsheet, mask);
+            hideActionSheet(actionsheet, weuiActionsheet, mask);
         });
         weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
         
@@ -161,11 +158,11 @@
             var id = $(this).attr('data-id');
             var name = $(this).text();
             itemClick(id, name);
-            hideActionSheet(weuiActionsheet, mask);
+            hideActionSheet(actionsheet, weuiActionsheet, mask);
         });
         
         // 隐藏
-        function hideActionSheet(weuiActionsheet, mask) {
+        function hideActionSheet(actionsheet, weuiActionsheet, mask) {
             weuiActionsheet.removeClass('weui_actionsheet_toggle');
             mask.removeClass('weui_fade_toggle');
             weuiActionsheet.on('transitionend', function() {
@@ -173,7 +170,10 @@
             }).on('webkitTransitionEnd', function() {
                 mask.hide();
             });
-            actionsheet.remove();
+            // 缓冲删除
+            setTimeout(function(){
+                actionsheet.remove();
+            }, 50);
         };
     }
     
