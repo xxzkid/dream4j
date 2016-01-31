@@ -5,7 +5,8 @@
 		'alert' : alert,
 		'toast' : toast,
 		'loadingShow' : loadingShow,
-		'loadingHide' : loadingHide
+		'loadingHide' : loadingHide,
+        'actionsheet' : actionsheet
 	};
 	
 	var confirmTpl = ''
@@ -58,6 +59,20 @@
 		+ 	'</div>'
 		+ '</div>'
 		+ '';
+
+    var actionsheetTpl = ''
+        + '<div id="actionSheet_wrap" style="display:none">'
+        + '<div class="weui_mask_transition" id="mask"></div>'
+        + '<div class="weui_actionsheet" id="weui_actionsheet">'
+        +    '<div class="weui_actionsheet_menu">'
+        +    '</div>'
+        +    '<div class="weui_actionsheet_action">'
+        +        '<div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>'
+        +    '</div>'
+        + '</div>'
+        + '</div>'
+        + '';
+
 	
 	// 确定取消框
 	function confirm(title, content, okCallback, cancelCallback) {
@@ -104,7 +119,7 @@
 		
 		setTimeout( function(){
 			dialogRemove(toast);
-		}, $.trim(second) == '' ? 3000 : parseInt(second) * 1000 );
+		}, $.trim(second) == '' ? 2000 : parseInt(second) * 1000 );
 		
 	}
 	
@@ -115,17 +130,62 @@
 	function loadingHide() {
 		$('#loadingToast').remove();
 	}
+
+    function actionsheet(data, itemClick) {
+        $( actionsheetTpl ).appendTo( $('body') );
+
+        var actionsheet = $('#actionSheet_wrap').show();
+
+        var mask = $('#mask');
+        var weuiActionsheet = $('#weui_actionsheet');
+        weuiActionsheet.addClass('weui_actionsheet_toggle');
+        mask.show().addClass('weui_fade_toggle').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+            actionsheet.remove();
+        });
+        // 去掉按钮绑定
+        $('#actionsheet_cancel').click(function () {
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+        
+        // 生成选项
+        var menu = $('#weui_actionsheet .weui_actionsheet_menu');
+        $.each(data, function(index, node){
+            var item = '<div class="weui_actionsheet_cell" data-id="'+ node.id +'">' + node.name + '</div>';
+            menu.append(item);
+        });
+        
+        // 每一个选项绑定事件
+        $('#weui_actionsheet .weui_actionsheet_menu .weui_actionsheet_cell').on('click', function(){
+            var id = $(this).attr('data-id');
+            var name = $(this).text();
+            itemClick(id, name);
+            hideActionSheet(weuiActionsheet, mask);
+        });
+        
+        // 隐藏
+        function hideActionSheet(weuiActionsheet, mask) {
+            weuiActionsheet.removeClass('weui_actionsheet_toggle');
+            mask.removeClass('weui_fade_toggle');
+            weuiActionsheet.on('transitionend', function() {
+                mask.hide();
+            }).on('webkitTransitionEnd', function() {
+                mask.hide();
+            });
+            actionsheet.remove();
+        };
+    }
 	
-	// 阴影层
-	function uiMask() {
-		$('<div class="weui_mask"></div>').appendTo($('body'));
-	}
+    // 阴影层
+    function uiMask() {
+        return $('<div class="weui_mask"></div>').appendTo($('body'));
+    }
 	
-	// dialog 移除
-	function dialogRemove(dialog) {
-		dialog.remove();
-		$('.weui_mask').remove();
-	}
+    // dialog 移除
+    function dialogRemove(dialog) {
+        dialog.remove();
+        $('.weui_mask').remove();
+    }
 	
 })(this.jQuery || this.Zepto);
-
