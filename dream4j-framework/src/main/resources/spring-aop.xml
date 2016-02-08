@@ -17,17 +17,11 @@
 	    http://www.springframework.org/schema/util
 	    http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- 扫描 framework, domain, service -->
-	<context:component-scan base-package="org.xxz.framework, org.xxz.domain, org.xxz.service"></context:component-scan>
-
-	<!-- 导入shiro配置 放置到mvc中 -->
-	<import resource="classpath*:spring-shiro.xml" />
-    <!-- aop config import springmvc -->
-    <!-- import resource="classpath*:spring-aop.xml" /-->
-	
-	
-	<import resource="classpath*:spring-cache.xml" />
-    <import resource="classpath*:spring-orm.xml" />
-
+    <!-- 日志拦截 配置proxy-target-class="true"则强制使用了CGLIB生成代理 -->
+    <!-- 1, 必须在controller扫描之后； 2，controllerLogger bean定义不可少 -->
+    <aop:aspectj-autoproxy proxy-target-class="true">
+        <aop:include name="controllerLogger" />
+    </aop:aspectj-autoproxy>
+    <bean id="controllerLogger" class="org.xxz.framework.aop.ControllerLogger"></bean>
 
 </beans>

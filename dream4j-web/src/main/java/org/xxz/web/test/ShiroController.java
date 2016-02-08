@@ -28,7 +28,7 @@ public class ShiroController {
     private ShiroService shiroTestService;
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login() {
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView m = new ModelAndView("login");
         
         Subject subject = SecurityUtils.getSubject();
