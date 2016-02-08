@@ -27,6 +27,19 @@ public class ShiroController {
     @Resource
     private ShiroService shiroTestService;
     
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView m = new ModelAndView("register");
+        return m;
+    }
+    
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView doRegister(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView m = new ModelAndView();
+        return m;
+    }
+    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView m = new ModelAndView("login");
@@ -42,7 +55,7 @@ public class ShiroController {
     
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView dologin( HttpServletRequest request, HttpServletResponse response, @Valid LoginForm loginForm, BindingResult bindingResult ) {
+    public ModelAndView doLogin( HttpServletRequest request, HttpServletResponse response, @Valid LoginForm loginForm, BindingResult bindingResult ) {
         ModelAndView m = new ModelAndView();
         
         if (bindingResult.hasErrors()) {

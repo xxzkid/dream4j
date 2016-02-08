@@ -35,6 +35,7 @@
                 /code.jpg=anon
                 /resources/**=anon
                 /login=anon
+                /register=anon
                 /**=authc
             </value>
         </property>
