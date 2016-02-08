@@ -47,7 +47,7 @@
 		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
 		<property name="minEvictableIdleTimeMillis" value="300000" />
 
-		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="validationQuery" value="SELECT 1" />
 		<property name="testWhileIdle" value="true" />
 		<property name="testOnBorrow" value="false" />
 		<property name="testOnReturn" value="false" />
@@ -67,14 +67,14 @@
 		<property name="mapperLocations" value="classpath*:mapper/**/*.xml" />
 	</bean>
 
-	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<!-- dao接口所在包名，Spring会自动查找其注解为Repository的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="org.xxz" />
 		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<!-- (事务管理)transaction manager, use dataSourceTransactionManager for global tx -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
