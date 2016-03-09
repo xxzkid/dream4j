@@ -192,13 +192,14 @@
 	            <artifactId>mysql-connector-java</artifactId>  
 	            <version>5.1.35</version>  
 	        </dependency>
-	        <!-- 
+	        
+	        <!-- pagehelper -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>4.0.1</version>
             </dependency>
-	         -->
+	         
 	        
 	        <!-- DruidDataSource -->  
 	        <dependency>  
@@ -218,6 +219,11 @@
 	            <artifactId>slf4j-api</artifactId>
 	            <version>${slf4j.version}</version>
 	        </dependency>
+            <dependency>  
+                <groupId>org.slf4j</groupId>  
+                <artifactId>slf4j-log4j12</artifactId>  
+                <version>${slf4j.version}</version>  
+            </dependency>
 	        
 	        <!-- AOP -->
 	        <dependency>
