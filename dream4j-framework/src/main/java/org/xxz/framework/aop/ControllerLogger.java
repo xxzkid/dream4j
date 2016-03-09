@@ -32,8 +32,7 @@ public class ControllerLogger {
                 loginName = account.getLoginName();
             }
         }
-        System.out.println("请求方法：" + retVal + "###" + jp.getTarget().getClass().getName() + "." + jp.getSignature().getName() + "(" + Arrays.toString(jp.getArgs()) + ")" + "请求用户：(" + userId + "," + loginName + "," + this.getIp(request) + ")");
-        System.out.println();
+        log.info("请求方法：" + retVal + "###" + jp.getTarget().getClass().getName() + "." + jp.getSignature().getName() + "(" + Arrays.toString(jp.getArgs()) + ")" + "请求用户：(" + userId + "," + loginName + "," + this.getIp(request) + ")");
     }
     
     private String getIp(HttpServletRequest request) {
