@@ -20,14 +20,24 @@
 	<!-- 扫描 framework, domain, service -->
 	<context:component-scan base-package="org.xxz.framework, org.xxz.domain, org.xxz.service"></context:component-scan>
 
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:jdbc.properties</value>
+                <value>classpath*:redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
 	<!-- 导入shiro配置 放置到mvc中 -->
 	<import resource="classpath*:spring-shiro.xml" />
+	
     <!-- aop config import springmvc -->
     <!-- import resource="classpath*:spring-aop.xml" /-->
 	
 	
 	<import resource="classpath*:spring-cache.xml" />
-    <import resource="classpath*:spring-orm.xml" />
+    <import resource="classpath*:spring-datasource.xml" />
 
 
 </beans>

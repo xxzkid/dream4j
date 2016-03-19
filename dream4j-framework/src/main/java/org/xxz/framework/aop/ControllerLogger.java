@@ -5,20 +5,20 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xxz.framework.constant.Constants;
 import org.xxz.framework.shiro.entity.LoginAccount;
 
 @Aspect
 public class ControllerLogger {
 
-    private final static Logger log = LoggerFactory.getLogger(ControllerLogger.class);
+    private final static Log log = LogFactory.getLog(ControllerLogger.class);
 
     @AfterReturning(pointcut="execution(* org.xxz.web..*.*(..)) and args(request, response, ..)", returning="retVal")
     public void log(JoinPoint jp, HttpServletRequest request, HttpServletResponse response, Object retVal) {

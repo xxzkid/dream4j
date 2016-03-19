@@ -8,8 +8,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>  
-            classpath*:spring.xml  
-            classpath*:spring-shiro.xml  
+            classpath*:spring.xml
         </param-value>
 	</context-param>
 
@@ -59,7 +58,7 @@
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<async-supported>true</async-supported>
 		<init-param>
-			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理  -->
 			<param-name>targetFilterLifecycle</param-name>
 			<param-value>true</param-value>
 		</init-param>
@@ -68,6 +67,7 @@
 		<filter-name>shiroFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 
 	<!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->
 	<servlet>
