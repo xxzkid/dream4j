@@ -9,4 +9,4 @@ springmvc + spring + mybatis + shiro + redis + dubbo ...<br/>
 如有问题：
 请提出Issues, 谢谢
 
-同时也希望您的加入！讨论QQ群：534522044
+讨论QQ群：551304760
